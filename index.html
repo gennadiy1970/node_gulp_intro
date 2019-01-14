@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Shower Presentation Engine</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/shower-ribbon/styles/screen-16x10.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="shower list">
+
+
+	<section class="slide">
+		<h2>NodeJS</h2>
+		<div class="logos">
+			Установка <a href="https://nodejs.org/en/">https://nodejs.org/en/</a>
+			<img src=".\pictures\nodejs.png" alt="NodeJS" width="100">
+			</div>
+		<ul>
+			<li> <strong>Зачем?</strong> Выполняет JavaScript где угодно.</li>
+			<li><strong>Кто?</strong> NodeJS создан в 2009 Ryan Dahl</li>
+			<li><strong>Что?</strong> V8 от Google + I/O  + library</li>
+			<li><strong>В чем преимущество?</strong> быстрый, экономно расходует память</li>
+			<li><strong>Альтернатива?</strong> 
+				<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino"><img src=".\pictures\rhino.jpg" alt="Rhino" width="100"> Rhino</a>, 
+				<a href="http://trac.webkit.org/wiki/JSC"><img src=".\pictures\jsc.png" alt="JSC" width="100"> JSC</a>, 
+				<a href="https://msdn.microsoft.com/en-us/library/98591fh7.aspx"><img src=".\pictures\ms.png" alt="WSH" width="100"> WSH</a>
+			</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>NodeJS</h2>
+		<p>Интересно? Тогда подробнее</p>
+		<ul>
+			<li>позволяет иметь общий код на клиенте и на сервере.</li>
+			<li>"заточен" под web, точные вычисления не к NodeJS</li>
+			<li>уверенно поддерживает множество соединений одновременно</li>
+			<li>легко сделать прототип приложения</li>
+			<li>менеджер пакетов <strong>npm</strong> <img src=".\pictures\npm.png" alt="npm" width="150"> c огромным набором готовых решений <strong>475 000 !!!</strong></li>
+			<li>искать пакеты npm можно в google.com и <a href="https://www.npmjs.com/">здесь</a>.</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>NodeJS установка и запуск</h2>
+		<p>после запуска инсталятора NodeJS в Windows10 будет создана папка 
+			C:\Program Files\nodejs и к этой папке должен быть указан путь в переменной PATH. 
+            Если все будет установлено успешно, то можно переходить к запуску NodeJS.
+		</p>
+		<pre>
+			<code  class="mark">$ node <span class="comment">         // Режим работы в консоли <strong>repl</strong></span></code>
+			<code class="mark"> 1 + 1 <span class="comment">         // Режим работы в консоли <strong>repl</strong></span></code> 
+			<code class="mark"> 2 <span class="comment">              // Режим работы в консоли <strong>repl</strong></span></code> 
+			<code  class="mark">$ node fileName <span class="comment"> // Режим работы c файлом</span></code>
+		</pre>
+		<p>Выход из режима <strong>repl</strong> - дважды нажать <strong>Ctrl+C</strong></p>
+	</section>
+	
+	<section class="slide">
+		<h2>CommonJS</h2>
+		<p>NodeJS использует собственный вариант работы с модулями, называемый <a href="https://nodejs.org/api/modules.html" target="_blank">CommonJS</a>. 
+		Вместо <strong>&lt;script&gt;</strong> использовать функцию <strong>require()</strong>
+		Для передачи данных из модуля используется объект <strong>exports</strong></p>
+        <pre>
+			<code  class="mark">	<span class="comment">//data.js </span></code>
+			<code  class="mark">const red = 'RED';</code>
+			<code  class="mark"><strong>exports</strong>.red = red;</code>
+			<code  class="mark">    <span class="comment">//app.js </span></code>
+			<code  class="mark">const color = <strong>require</strong>('./data.js');</code>
+			<code  class="mark">console.log( `color is ${color.red}`);</code>
+		</pre>
+	</section>
+	
+	<section class="slide">
+		<h2>Потоки Input/Output</h2>
+		<p>
+			NodeJS использует собственные объекты и методы для работы с данными, в том числе с файлами. 
+			Для дальнейшего пониманния работы NodeJS важно познакомиться с примером работы метода <strong>pipe()</strong>.
+            Не вдаваясь в детали рассмотрим пример как с помощью этого метода читают содержимое файла, сжимают его и записывают результат.
+		</p>
+        <pre>
+			<code  class="mark">const r = fs.createReadStream('file.txt');</code>
+			<code  class="mark">const z = zlib.createGzip();</code>
+			<code  class="mark">const w = fs.createWriteStream('file.txt.gz');</code>
+			<code  class="mark">r.pipe(z).pipe(w);</code>
+		</pre>
+	</section>
+	
+	<section class="slide">
+		<h2>Gulp</h2>
+		<p>Gulp использует <strong>npm</strong> пакеты и применяет их для обработки заданных файлов. 
+		Т.е. <strong>Gulp является сборщиком проекта</strong>.
+		</p>
+		<img src=".\pictures\gulp.png" alt="gulp" width="300">
+		<img src=".\pictures\gulp2.png" alt="gulp" width="300">
+		<p>Хорошая <a href="https://www.smashingmagazine.com/2014/06/building-with-gulp/">статья</a> о gulp.</p>
+	</section>
+	
+	<section class="slide">
+		<h2>Работа с gulp: install</h2>
+		<p>Пакет npm gulp находится <a href="https://www.npmjs.com/package/gulp" target="_blank">здесь</a></p>
+	    <p><span class="comment">Пакет можно (но не обязательно) установить глобально:</span></p>
+		<p>
+			<strong>npm install --global gulp</strong> или кратко: <strong>npm i -g gulp</strong> 
+		</p>
+		<p>
+			убедимся в корректной установке: <strong>gulp --version</strong>  // CLI version 3.9.1
+		</p>
+		<p>Для проекта создаем новую директорию и переходим в нее.</p>
+		<p>Для работы с проектом нужны два файла:
+<strong>package.json</strong> и <strong>gulpfile.js</strong></p>
+	</section>
+
+    <section class="slide">
+		<h2>Работа с gulp: package.json</h2>
+		<p><strong>package.json</strong> это файл с данными, необходимыми для <em>npm</em>. 
+		</p>
+		<p><strong>npm init</strong> создаст этот файл после ответов на ряд вопросов (все "yes", если не планируете публикацию проекта как npm пакета)
+		</p>
+		<p><strong>npm install --save <i>package</i></strong>  или <strong>npm install --save-dev <i>package</i></strong>  эта команда установит выбранный пакет <i>package</i> локально</p>
+		
+        <p><strong>npm install -g <i>package</i></strong> установит пакет глобально, для всей операционной системы.</p>		
+		<pre> <code class="comment">В директории проекта появится папка <strong>node_modules</strong></code></pre>
+	</section>
+    <section class="slide">
+       <h2>Работа с gulp: --save vs --save-dev</h2>
+		<p><strong>npm install --save <i>package</i></strong>  эта команда установит выбранный пакет <i>package</i> локально для использования проектом (например подключение bootstrap).</p>
+		<p><strong>npm install --save-dev <i>package</i></strong>  эта команда установит выбранный пакет <i>package</i> локально для разработки проекта (например gulp).</p>
+		<p><strong>npm i -D <i>package</i></strong>  эта краткая запись --save-dev.</p>
+	</section>
+    <section class="slide">
+		<h2>Работа с gulp: gulpfile.js</h2>
+	     <p><strong>gulpfile.js</strong> это файл подключает <em>npm</em> пакеты с помощью <em>task</em> от gulp. 
+		</p>
+        <pre>
+			<code class="mark">'use strict';</code>
+			<code class="mark">var gulp = require('gulp');</code>
+			<code class="mark">gulp.<strong>task('default'</strong>, function () {</code>
+			<code class="mark">    console.log('Hello Gulp');</code>
+			<code class="mark">});</code>
+		</pre>
+		<p><strong>Default Tasks</strong> - определяет <em>task</em> которая запустится по команде терминала <strong>gulp</strong></p>
+	</section>
+
+    <section class="slide">
+		<h2>Работа с gulp: task</h2>
+		<p><strong>task</strong> это команда, которая запустится по команде терминала 
+			<strong>gulp taskName</strong>. Перепишем наш пример: и выполним <strong>gulp greet</strong></p>
+		 <pre>
+			<code class="mark">'use strict';</code>
+			<code class="mark">var gulp = require('gulp');</code>
+			<code class="mark">gulp.<strong>task('default'</strong>, function () {</code>
+			<code class="mark">    console.log('Hello Gulp');</code>
+			<code class="mark">});</code>
+			<code class="mark">gulp.<strong>task('greet'</strong>, function () {</code>
+			<code class="mark">    console.log('Hello User!');</code>
+			<code class="mark">});</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Работа с gulp: tasks</h2>
+		<p>Запуск <strong>task</strong> можно поручить  <strong>task default</strong> </p>
+		<pre>
+			<code class="mark">'use strict';</code>
+			<code class="mark">var gulp = require('gulp');</code>
+			<code class="mark">gulp.<strong>task('default', ['greet', 'hello'])</strong>;</code>
+			<code class="mark">gulp.<strong>task('hello',</strong> function () {</code>
+				<code class="mark">    console.log('Hello Gulp!'); });</code>
+			<code class="mark">gulp.<strong>task('greet',</strong> function () {</code>
+			<code class="mark">    console.log('Hello User!'); });</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Работа с gulp: task copy</h2>
+		<p><strong>gulp.src</strong><em>('src/file.html')</em> метод чтения потока из файла в папке <em>src</em></p>
+		<p><strong>gulp.dest</strong><em>('build')</em>  метод записи потока в файл в папку <em>build</em></p>
+				<pre>
+			<code class="mark">'use strict';</code>
+			<code class="mark">var gulp = require('gulp');</code>
+			<code class="mark">gulp.<strong>task('default', ['copy'])</strong>;</code>
+			<code class="mark">gulp.<strong>task('copy',</strong> function () {</code>
+			<code class="mark">    return gulp.src('src/file.html')</code>
+			<code class="mark">        .pipe(gulp.dest('build'));</code>
+			<code class="mark"> });</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Работа с gulp: npm task</h2>
+		<p>Описание пакета npm <strong>gulp-concat</strong> <a href="https://www.npmjs.com/package/gulp-concat">здесь</a>. Установка: <strong>npm i -D gulp-concat</strong></p>
+		<pre>
+			<code class="mark">'use strict';</code>
+			<code class="mark">var gulp = require('gulp');</code>
+			<code class="mark">var concat = require('gulp-concat');</code>
+			<code class="mark">gulp.<strong>task('default', ['concat'])</strong>;</code>
+			<code class="mark">gulp.<strong>task('concat',</strong> function () {</code>
+			<code class="mark">    return gulp.src('./src/js/**/*.js')</code>
+			<code class="mark">        .pipe(concat('all.js'))</code>
+			<code class="mark">        .pipe(gulp.dest('build/js'));</code>
+			<code class="mark"> });</code>
+		</pre>
+	</section>
+	<!-- <section class="slide">
+		<h2>Работа с gulp: очередность, структура.</h2>
+		<p>Порядок обработки фала указывается через функцию <strong>pipe()</strong>, а для порядка выполнения <em>task</em> есть пакет npm <a href="https://www.npmjs.com/package/run-sequence">run-sequence</a>.</p>
+		<p>Не удобно хранить все <em>task</em> в одном файле. Существует npm пакет, позволяющий создавать отдельный файл для каждой <em>task</em> (вернее пакет позволяет обращаться к любому файлу) <a href="https://www.npmjs.com/package/require-dir">require-dir</a> </p>
+	</section>
+
+	<section class="slide">
+		<p>В <strong>gulpfile.js</strong> всего одна строка с указанием на папку gulp.</p> 			
+		<pre><code class="mark">require('require-dir')('./gulp', {recurse: true})</code></pre>
+		<p>Запуск <em>task</em> задается из файла <strong>default.js</strong></p>
+		<pre>
+			<code class="mark">'use strict';</code>
+			<code class="mark">var gulp = require('gulp');</code>
+			<code class="mark">var runseq = require('run-sequence');</code>
+			<code class="mark">gulp.task('default', function(){</strong></code>
+			<code class="mark">    runseq ('concat', 'copy');</code>
+			<code class="mark"> });</code>
+		</pre>
+	</section> -->
+	<!-- Copyright © 2017 Yours Truly, Famous Inc. -->
+    <!-- <section class="slide">
+		<p>Файл <strong>copy.js</strong> содержит <em>task</em>  <strong>copy</strong></p>
+		<pre>
+			<code class="mark">'use strict';</code>
+			<code class="mark">var gulp = require('gulp');</code>
+			<code class="mark">gulp.task('copy', function(){</strong>;</code>
+				<code class="mark">   return gulp.src('src/**/*')</code>
+				<code class="mark">   	.pipe(gulp.dest('build/'))</code>
+				<code class="mark"> });</code>
+			</pre>
+		</section> -->
+		<section class="slide">
+			<h2>Работа с gulp: watcher </h2>
+			<p>gulp содержит функцию, которая может ожидать изменения файлов и вызывать callback функцию </p>
+			<pre>
+				<code class="mark">var gulp = require('gulp');</code>
+				<code class="mark"><strong>gulp.task('copy', function(){</strong>;</code>
+					<code class="mark">   return gulp.src('src/**/*')</code>
+					<code class="mark">   	.pipe(gulp.dest('build/')) });</code>
+					<code class="mark">gulp.task('copy:watch', function () {</code>
+						<code class="mark">   	gulp.watch('src/**/*', ['copy']); });</code>
+					</pre>
+				</section>
+				
+				<section class="slide">
+					<h2>Работа с gulp: browser-sync</h2>
+					<p>npm пакет <a href="https://www.npmjs.com/package/browser-sync">browser-sync</a> требует инсталяции пакета <strong>npm i -D browser-sync</strong>, создания <em>task</em> <strong>server</strong>. Ниже пример static server </p>
+					<pre>
+						<code class="mark">var gulp = require('gulp');</code>
+						<code class="mark">var browserSync = require('browser-sync').create();</code>
+						<code class="mark">gulp.task('server', function() {</code>
+							<code class="mark">  browserSync.init({</code>
+								<code class="mark">     server: { baseDir: "build/" }, </code>
+								<code class="mark">     files: ['build/*.html','build/*.css','build/img/*.*']</code>
+								<code class="mark">});});</code>
+							</pre>
+						</section>
+						<section class="slide">
+							<h2>Работа с gulp: browser-sync, watch</h2>
+							<p>
+								Задачи <strong>watch</strong> и <strong>browser-sync</strong> размещаются в <strong>default</strong>
+							</p>
+							<pre>
+								<code class="mark">var gulp = require('gulp');</code>
+								<code class="mark">var runseq = require('run-sequence');</code>
+								<code class="mark">gulp.task('default', function(){</code>
+									<code class="mark">  runseq('copy', 'server', 'copy:watch');</code>
+									<code class="mark">});</code>
+								</pre>	
+								
+							</section>
+							<section class="slide">
+								<h2>Работа с gulp: Web Starter Kit</h2>
+								<p> По этой 
+									<a href="https://github.com/google/web-starter-kit">ссылке</a>
+									находится созданый специалистами GOOGLE стартовый набор для создания web приложений.
+									Этот набор основан на <strong>gulp</strong> и в его <strong>package.json</strong> можно ознакомиться с <em>npm</em> пакетами, которые подходят для большинства ситуаций.
+								</p>
+								<p>GOOGLE рекомендует использовать этот <strong>Web Starter Kit</strong> т.к. он оптимизирован для большинства браузеров, имеет высокую скр=орость загрузки и в нем установлены надежные npm пакеты, которые регулярно обновляются. </p>
+								<p>Спасибо за внимание и удачи!</p>
+								<p></p>
+							</section>
+							<script src="js/shower.min.js"></script>
+						</body>
+						</html>
+						
